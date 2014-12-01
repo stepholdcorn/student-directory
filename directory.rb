@@ -24,9 +24,9 @@ def print_header
 end
 
 def print_each(students)
-	students.each_with_index do |student, index|
-		print "#{index +1}. #{student[:name]} (#{student[:cohort]} cohort)\n"
-	end
+		students.each_with_index do |student, index| 
+		print "#{index +1}. #{student[:name]} (#{student[:cohort]} cohort)\n" if student[:name][0] == "P"
+		end
 end
 
 def print_footer(students)
