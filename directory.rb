@@ -3,6 +3,7 @@ def input_students
 	puts "To finish, just hit return twice."
 	#create an empty array
 	students = []
+	cohort_list = []
 	#get the first name
 	name = gets.chomp
 	#while the name is not empty, repeat this code
@@ -31,19 +32,29 @@ end
 
 
 def print_header
-	puts "The students of my cohort at Makers Academy".center(50)
+	puts "The students of the cohorts at Makers Academy".center(50)
 	puts "------------".center(50)
 	puts " "
 end
 
 def print_each(students)
-		i = 0
-		until i >= students.length
-		for student in students 
-		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, Hometown: #{student[:hometown]}\n".lstrip
-		i += 1 
-		end
-		end
+	@students = students
+	
+	def cohorts(x)
+	month = @students.select {|student| student[:cohort] == x.to_sym}
+	if !month.empty? && x == "Not provided"
+			puts "The following students do not belong to a cohort yet:"
+			month.map.each_with_index{|student, index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, Hometown: #{student[:hometown]}\n".lstrip}
+	elsif !month.empty? 
+			puts "The #{x} cohort:"
+			month.map.each_with_index{|student, index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, Hometown: #{student[:hometown]}\n".lstrip}
+	else
+	puts ""
+	end	
+	end
+cohorts("December")	
+cohorts("January")	
+cohorts("Not provided")	
 end
 
 def print_footer(students)
