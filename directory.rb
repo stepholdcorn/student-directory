@@ -5,18 +5,18 @@ def input_students
 	students = []
 	cohort_list = []
 	#get the first name
-	name = gets.chomp
+	name = gets.strip
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 		#add the student hash to the array
 		print "Cohort: "
-		cohort = gets.chomp.to_sym
+		cohort = gets.strip.to_sym
 		cohort = "Not provided".to_sym if cohort.empty?
 		print "Date of birth dd/mm/yyyy: "
-		dob = gets.chomp
+		dob = gets.strip
 		dob = "Not provided" if dob.empty?
 		print "Hometown: "
-		hometown = gets.chomp
+		hometown = gets.strip
 		hometown = "Not provided" if hometown.empty?
 		students << {:name => name,
 		:cohort => cohort,
@@ -28,7 +28,7 @@ def input_students
 			puts "Now we have #{students.length} students, please enter the next name or hit return"
 		end
 		#get another name from the user
-		name = gets.chomp
+		name = gets.strip
 	end
 	#return the array of students
 	students
@@ -51,7 +51,7 @@ def print_each(students)
 			puts "The #{x} cohort:"
 			month.map.each_with_index{|student, index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, Hometown: #{student[:hometown]}\n".lstrip}
 	else
-	puts ""
+	print ""
 	end	
 	end
 cohorts("December")	
