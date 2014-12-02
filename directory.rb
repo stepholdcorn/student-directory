@@ -1,5 +1,5 @@
 def input_students
-	print "Please enter the names of the students.\n"
+	print "Please enter the name of the student.\n"
 	print "To finish, just hit return twice.\n"
 	#create an empty array
 	students = []
@@ -8,8 +8,15 @@ def input_students
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 		#add the student hash to the array
-		students << {:name => name, :cohort => :december}
-		print "Now we have #{students.length} students\n"
+		print "Date of birth dd/mm/yyyy:"
+		dob = gets.chomp
+		print "Hometown:"
+		hometown = gets.chomp
+		students << {:name => name,
+		:cohort => :december,
+		:dob => dob,
+		:hometown => hometown}
+		print "Now we have #{students.length} students, please enter the next name or hit return twice\n"
 		#get another name from the user
 		name = gets.chomp
 	end
@@ -27,7 +34,7 @@ def print_each(students)
 		i = 0
 		until i >= students.length
 		for student in students 
-		print "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort)\n" 
+		print "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, from #{student[:hometown]}\n" 
 		i += 1 
 		end
 		end
