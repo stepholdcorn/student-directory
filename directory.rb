@@ -8,12 +8,17 @@ def input_students
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 		#add the student hash to the array
+		print "Cohort: "
+		cohort = gets.chomp.to_sym
+		cohort = "Not provided".to_sym if cohort.empty?
 		print "Date of birth dd/mm/yyyy: "
 		dob = gets.chomp
+		dob = "Not provided" if dob.empty?
 		print "Hometown: "
 		hometown = gets.chomp
+		hometown = "Not provided" if hometown.empty?
 		students << {:name => name,
-		:cohort => :december,
+		:cohort => cohort,
 		:dob => dob,
 		:hometown => hometown}
 		puts "Now we have #{students.length} students, please enter the next name or hit return"
@@ -35,7 +40,7 @@ def print_each(students)
 		i = 0
 		until i >= students.length
 		for student in students 
-		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, from #{student[:hometown]}\n".lstrip
+		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, Hometown: #{student[:hometown]}\n".lstrip
 		i += 1 
 		end
 		end
