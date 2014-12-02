@@ -22,7 +22,11 @@ def input_students
 		:cohort => cohort,
 		:dob => dob,
 		:hometown => hometown}
-		puts "Now we have #{students.length} students, please enter the next name or hit return"
+		if students.length == 1
+			puts "Now we have #{students.length} student, please enter the next name or hit return"
+		else
+			puts "Now we have #{students.length} students, please enter the next name or hit return"
+		end
 		#get another name from the user
 		name = gets.chomp
 	end
@@ -34,12 +38,10 @@ end
 def print_header
 	puts "The students of the cohorts at Makers Academy".center(50)
 	puts "------------".center(50)
-	puts " "
 end
 
 def print_each(students)
 	@students = students
-	
 	def cohorts(x)
 	month = @students.select {|student| student[:cohort] == x.to_sym}
 	if !month.empty? && x == "Not provided"
@@ -58,8 +60,12 @@ cohorts("Not provided")
 end
 
 def print_footer(students)
-	puts " "
-	puts "Overall, we have #{students.length} great students".center(50)
+puts ""
+	if students.length == 1
+		puts "Overall, we have #{students.length} great student".center(50)
+	else
+		puts "Overall, we have #{students.length} great students".center(50)
+	end
 end
 
 #calling the methods
