@@ -1,6 +1,6 @@
 def input_students
-	print "Please enter the name of the student.\n"
-	print "To finish, just hit return twice.\n"
+	puts "Please enter the name of the student."
+	puts "To finish, just hit return twice."
 	#create an empty array
 	students = []
 	#get the first name
@@ -8,15 +8,15 @@ def input_students
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 		#add the student hash to the array
-		print "Date of birth dd/mm/yyyy:"
+		print "Date of birth dd/mm/yyyy: "
 		dob = gets.chomp
-		print "Hometown:"
+		print "Hometown: "
 		hometown = gets.chomp
 		students << {:name => name,
 		:cohort => :december,
 		:dob => dob,
 		:hometown => hometown}
-		print "Now we have #{students.length} students, please enter the next name or hit return twice\n"
+		puts "Now we have #{students.length} students, please enter the next name or hit return"
 		#get another name from the user
 		name = gets.chomp
 	end
@@ -26,22 +26,24 @@ end
 
 
 def print_header
-	print "The students of my cohort at Makers Academy\n"
-	print "------------\n"
+	puts "The students of my cohort at Makers Academy".center(50)
+	puts "------------".center(50)
+	puts " "
 end
 
 def print_each(students)
 		i = 0
 		until i >= students.length
 		for student in students 
-		print "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, from #{student[:hometown]}\n" 
+		puts "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, from #{student[:hometown]}\n".lstrip
 		i += 1 
 		end
 		end
 end
 
 def print_footer(students)
-	print "Overall, we have #{students.length} great students\n"
+	puts " "
+	puts "Overall, we have #{students.length} great students".center(50)
 end
 
 #calling the methods
