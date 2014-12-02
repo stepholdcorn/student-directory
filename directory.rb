@@ -6,6 +6,7 @@ def input_students
 	cohort_list = []
 	#get the first name
 	name = gets.strip
+if !name.empty?
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 		#add the student hash to the array
@@ -32,6 +33,9 @@ def input_students
 	end
 	#return the array of students
 	students
+else
+	input_students
+end
 end
 
 
@@ -47,9 +51,11 @@ def print_each(students)
 	if !month.empty? && x == "Not provided"
 			puts "The following students do not belong to a cohort yet:"
 			month.map.each_with_index{|student, index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, Hometown: #{student[:hometown]}\n".lstrip}
+			puts ""
 	elsif !month.empty? 
 			puts "The #{x} cohort:"
 			month.map.each_with_index{|student, index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort), DoB: #{student[:dob]}, Hometown: #{student[:hometown]}\n".lstrip}
+			puts ""
 	else
 	print ""
 	end	
@@ -60,7 +66,6 @@ cohorts("Not provided")
 end
 
 def print_footer(students)
-puts ""
 	if students.length == 1
 		puts "Overall, we have #{students.length} great student".center(50)
 	else
