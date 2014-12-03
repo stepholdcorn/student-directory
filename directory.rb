@@ -73,8 +73,31 @@ def print_footer(students)
 	end
 end
 
+#defining the interactive menu
+def interactive_menu
+	students = []
+	loop do
+	#print the menu and ask the user what to do
+	puts "1. Input the students"
+	puts "2. Show the students"
+	puts "9. Exit"
+	#read the input and save it to a variable
+	selection = gets.chomp
+	#do what the user has asked
+	case selection
+		when "1"
+			students = input_students
+		when "2"
+			print_header
+			print_each(students)
+			print_footer(students)
+		when "9"
+			exit
+		else 
+			puts "I don't know what you mean, please try again"
+		end
+	end
+end
+
 #calling the methods
-students = input_students
-print_header
-print_each(students)
-print_footer(students)
+interactive_menu
