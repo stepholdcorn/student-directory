@@ -4,31 +4,28 @@ def input_students
 	puts "Please enter the name of the student."
 	puts "To finish, just hit return twice."
 	#get the first name
-	name = gets.strip
+	name = gets.chomp
 if !name.empty?
 	#while the name is not empty, repeat this code
 	while !name.empty? do
 		#add the student hash to the array
 		print "Cohort: "
-		cohort = gets.strip.to_sym
-		cohort = "Not provided".to_sym if cohort.empty?
+		cohort = gets.chomp
+		cohort = "Not provided" if cohort.empty?
 		print "Date of birth dd/mm/yyyy: "
-		dob = gets.strip
+		dob = gets.chomp
 		dob = "Not provided" if dob.empty?
 		print "Hometown: "
-		hometown = gets.strip
+		hometown = gets.chomp
 		hometown = "Not provided" if hometown.empty?
-		@students << {:name => name,
-		:cohort => cohort,
-		:dob => dob,
-		:hometown => hometown}
+		add_student(name, cohort, dob, hometown)
 		if @students.length == 1
 			puts "Now we have #{@students.length} student, please enter the next name or hit return"
 		else
 			puts "Now we have #{@students.length} students, please enter the next name or hit return"
 		end
 		#get another name from the user
-		name = gets.strip
+		name = gets.chomp
 	end
 	#return the array of students
 	@students
@@ -76,6 +73,7 @@ def print_menu
 	puts "1. Input the students"
 	puts "2. Show the students"
 	puts "3. Save the list to students.csv"
+	puts "4. Load the list from students.csv"
 	puts "9. Exit"
 end
 
@@ -93,6 +91,8 @@ def process(selection)
 			show_students
 		when "3"
 			save_students
+		when "4"
+			load_students
 		when "9"
 			exit
 		else 
@@ -119,6 +119,25 @@ def save_students
 	file.close
 end
 
+def load_students
+	file = File.open("students.csv", "r")
+	file.readlines.each do |line|
+	name, cohort, dob, hometown = line.chomp.split(',')
+	add_student(name, cohort, dob, hometown)
+	end
+	file.close
+end
+
+def add_student(name, cohort, dob, hometown)
+	@students << {:name => name, :cohort => cohort.to_sym, :dob => dob, :hometown => hometown}
+end
+
 #calling the methods
 interactive_menu
+
+
+
+
+
+
 
