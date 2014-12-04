@@ -23,8 +23,8 @@ end
 def print_menu
 	puts "1. Input the students"
 	puts "2. Show the students"
-	puts "3. Save the list to students.csv"
-	puts "4. Load the list from students.csv"
+	puts "3. Save the list of students"
+	puts "4. Load the list of students"
 	puts "9. Exit"
 end
 
@@ -122,7 +122,9 @@ def print_footer
 end
 
 def save_students
-	file = File.open("students.csv", "w")
+	puts "Please enter the name of the file that you would like to save to"
+	save_to = gets.chomp
+	file = File.open(save_to, "w")
 	@students.each do |student|
 		student_data = [student[:name], student[:cohort], student[:dob], student[:hometown]]
 		csv_line = student_data.join(",")
@@ -132,6 +134,8 @@ def save_students
 end
 
 def load_students(filename = "students.csv")
+	puts "Please enter the name of the file you would like to load"
+	filename = gets.chomp
 	file = File.open(filename, "r")
 	file.readlines.each do |line|
 		name, cohort, dob, hometown = line.chomp.split(',')
